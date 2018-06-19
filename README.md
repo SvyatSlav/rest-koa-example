@@ -1,6 +1,8 @@
 ## Hot to use
+```
 GET /
 GET /stat
+```
 
 Online demo: 51.145.130.171 
 
