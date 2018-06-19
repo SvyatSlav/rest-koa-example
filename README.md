@@ -1,4 +1,4 @@
-##Hot to use
+## Hot to use
 GET /
 GET /stat
 
@@ -16,7 +16,7 @@ via Kubernetes
 kubectl create -f azure.kuber.yml
 ```
 
-##TODO
+## TODO
 - CircleCI
 - LoadBalancer: Ingress / Azure Balancer
 - Intergration tests
