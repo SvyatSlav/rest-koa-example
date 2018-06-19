@@ -1,0 +1,18 @@
+version: '3'
+services:
+  rest-koa-back:
+    image: redis
+    container_name: rest-koa-back
+    ports:
+        - "6379:6379"
+
+  rest-koa-front:
+    build: .
+    image: rest-koa-front
+    container_name: rest-koa-front
+    environment:
+      REDIS:  rest-koa-back
+    links:
+        - rest-koa-back
+    ports:
+        - "7071:7071"

@@ -1,0 +1,68 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: rest-koa-back
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rest-koa-back
+    spec:
+      containers:
+      - name: rest-koa-back
+        image: redis
+        ports:
+        - containerPort: 6379
+          name: redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest-koa-back
+spec:
+  ports:
+  - port: 6379
+  selector:
+    app: rest-koa-back
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: rest-koa-front
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: rest-koa-front
+    spec:
+      containers:
+      - name: rest-koa-front
+        image: ssvyatslav/rest-koa-front
+        ports:
+        - containerPort: 7071
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+        env:
+        - name: REDIS
+          value: "rest-koa-back"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest-koa-front
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 7071
+  selector:
+    app: rest-koa-front
