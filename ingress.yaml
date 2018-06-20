@@ -14,5 +14,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: rest-koa
+          serviceName: rest-koa-front
           servicePort: 7071

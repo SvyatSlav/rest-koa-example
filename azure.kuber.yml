@@ -31,12 +31,7 @@ kind: Deployment
 metadata:
   name: rest-koa-front
 spec:
-  replicas: 2
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
-  minReadySeconds: 5 
+  replicas: 1 
   template:
     metadata:
       labels:
@@ -44,14 +39,9 @@ spec:
     spec:
       containers:
       - name: rest-koa-front
-        image: ssvyatslav/rest-koa-front
+        image: svyatslav/rest-koa-front:v2
         ports:
         - containerPort: 7071
-        resources:
-          requests:
-            cpu: 250m
-          limits:
-            cpu: 500m
         env:
         - name: REDIS
           value: "rest-koa-back"

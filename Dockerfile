@@ -9,8 +9,7 @@
 #
 
 ### BASE
-FROM node:8.9.4-alpine AS base
-LABEL maintainer "Byungjin Park <posquit0.bj@gmail.com>"
+FROM node:8.11.3-alpine AS base
 # Set the working directory
 WORKDIR /app
 # Copy project specification and dependencies lock files

@@ -4,7 +4,7 @@ GET /
 GET /stat
 ```
 
-Online demo: 51.145.130.171 
+Online demo: http://104.45.21.105:7071/
 
 ## Launch local
 ```

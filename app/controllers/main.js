@@ -1,5 +1,3 @@
-
-
 const pkginfo = require('../../package.json');
 const spec = require('../spec');
 const dto = require('./dto');
@@ -25,17 +23,15 @@ exports.welcome = async (ctx) => {
 
   const data = {
     name: pkginfo.name,
-    version: pkginfo.version,
+    version: pkginfo.version,    
     myIp: ip.address(),
     counter: count
   };
 
-
-  ctx.res.ok(data, 'you being counted');
+  ctx.res.ok(data, 'You being counted');
 };
 
 exports.stat = async (ctx) => {
-
   var count =  await dto.get();  
   ctx.res.ok(count, "Total Count")
 }
